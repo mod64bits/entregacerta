@@ -1,0 +1,40 @@
+{% extends 'users/home_user.html' %}
+{% load widget_tweaks %}
+
+{% block css %}
+{% endblock css %}
+{% block container %}
+    <div class="col-md-9">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Atualizar Perfil</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    {% for field in form %}
+
+                        <div class="form-group{% if field.errors %}form-control is-invalid{% endif %}">
+                            <label for="{{ field.auto_id }}">{{ field.label }}</label>
+                            {% render_field field class='form-control  rounded-0' %}
+                            {% for error in field.errors %}
+                                <span class="text-danger">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock container %}
+{% block scripts %}
+
+{% endblock scripts %}
