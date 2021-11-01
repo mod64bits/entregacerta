@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.users',
     'apps.correspondence',
-    'apps.adresses',
+    'apps.dwellers',
 
 ]
 
