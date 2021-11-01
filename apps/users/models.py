@@ -40,3 +40,19 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return str(self).split(" ")[0]
+
+
+class Complement(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='comp_user')
+    cell_phone = models.CharField('Celular', max_length=13)
+    additional_email = models.EmailField('Email Adicional', null=True, blank=True)
+    created_at = models.DateTimeField('Cadastrado em', auto_now_add=True)
+    updated_at = models.DateTimeField('Modificado em', auto_now=True)
+
+    def __str__(self):
+        return self.cell_phone
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name = "Celular"
+        verbose_name_plural = "Celulares"
